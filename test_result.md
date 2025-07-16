@@ -175,11 +175,14 @@ frontend:
     file: "backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: true
         agent: "main"
         comment: "Added FastAPI routes to block /admin, /wp-admin, /phpmyadmin and other common admin paths with 301 redirects to homepage"
+      - working: true
+        agent: "testing"
+        comment: "Backend admin path blocking tested and working correctly. All 14 admin paths tested (/admin, /admin/, /admin/any-path, /admin/dashboard, /admin/users/123, /wp-admin, /wp-admin/, /wp-admin/admin.php, /phpmyadmin, /phpmyadmin/, /phpmyadmin/index.php, /phpMyAdmin, /phpMyAdmin/, /phpMyAdmin/index.php) return proper 301 redirects to / when accessed directly on backend service. Admin path blocking is functioning as designed."
 
   - task: "Fix Discord link sharing"
     implemented: true
