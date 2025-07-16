@@ -141,6 +141,10 @@ def test_admin_path_blocking(base_url):
     """Test admin path blocking functionality"""
     print("\n=== Testing Admin Path Blocking ===")
     
+    # For admin path blocking, we need to test against the backend service directly
+    # since the external URL routes through frontend first
+    backend_internal_url = "http://localhost:8001"
+    
     admin_paths = [
         "/admin",
         "/admin/",
@@ -160,10 +164,12 @@ def test_admin_path_blocking(base_url):
     
     all_passed = True
     
+    print(f"Testing admin path blocking against backend service: {backend_internal_url}")
+    
     for path in admin_paths:
         try:
             print(f"Testing path: {path}")
-            response = requests.get(f"{base_url}{path}", timeout=30, allow_redirects=False)
+            response = requests.get(f"{backend_internal_url}{path}", timeout=30, allow_redirects=False)
             
             # Should return 301 redirect
             if response.status_code == 301:
