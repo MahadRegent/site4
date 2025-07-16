@@ -227,7 +227,7 @@ test_plan:
     - "Fix Discord link sharing"
   stuck_tasks: []
   test_all: true
-  test_priority: "high_first"
+  test_priority: "completed"
 
 agent_communication:
   - agent: "main"
