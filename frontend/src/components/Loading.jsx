@@ -1,11 +1,33 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Loading.css';
 
 const Loading = ({ fadeOut }) => {
+  const [loadingProgress, setLoadingProgress] = useState(0);
+  const [currentText, setCurrentText] = useState('Инициализация...');
+
+  useEffect(() => {
+    const texts = [
+      'Инициализация...',
+      'Подключение к серверу...',
+      'Загрузка компонентов...',
+      'Почти готово...'
+    ];
+
+    const intervals = [0, 400, 800, 1200];
+    const progressIntervals = [0, 30, 70, 100];
+
+    texts.forEach((text, index) => {
+      setTimeout(() => {
+        setCurrentText(text);
+        setLoadingProgress(progressIntervals[index]);
+      }, intervals[index]);
+    });
+  }, []);
+
   return (
     <div className={`loading-container ${fadeOut ? 'fade-out' : ''}`}>
       <div className="loading-content">
-        {/* Логотип с улучшенной анимацией - без фона */}
+        {/* Оптимизированный логотип */}
         <div className="logo-container">
           <div className="logo-wrapper">
             <svg 
@@ -34,51 +56,50 @@ const Loading = ({ fadeOut }) => {
               <line x1="10" y1="30" x2="13" y2="27" stroke="white" strokeWidth="1.5"/>
               <line x1="30" y1="30" x2="27" y2="27" stroke="white" strokeWidth="1.5"/>
             </svg>
-            {/* Улучшенный спиннер с множественными кольцами */}
+            {/* Оптимизированные спиннеры */}
             <div className="logo-spinner primary"></div>
             <div className="logo-spinner secondary"></div>
             <div className="logo-spinner tertiary"></div>
           </div>
         </div>
 
-        {/* Название с улучшенной анимацией */}
+        {/* Название с оптимизированной анимацией */}
         <h1 className="main-title">
           VORTEXHOST
         </h1>
 
-        {/* Подзаголовок с эффектом печатания */}
+        {/* Подзаголовок с быстрым эффектом печатания */}
         <p className="subtitle typewriter">
           Minecraft хостинг
         </p>
 
-        {/* Улучшенный индикатор загрузки с пульсацией */}
+        {/* Оптимизированный индикатор загрузки */}
         <div className="dots-container">
           <div className="dots-wrapper">
             <div className="dot pulse"></div>
             <div className="dot pulse"></div>
             <div className="dot pulse"></div>
-            <div className="dot pulse"></div>
-            <div className="dot pulse"></div>
           </div>
         </div>
 
-        {/* Прогресс бар с волновым эффектом */}
+        {/* Прогресс бар с реальным прогрессом */}
         <div className="progress-container">
-          <div className="progress-bar wave-effect">
+          <div 
+            className="progress-bar-fill"
+            style={{ width: `${loadingProgress}%` }}
+          >
             <div className="progress-shine"></div>
           </div>
         </div>
 
-        {/* Текст загрузки с анимацией */}
+        {/* Динамический текст загрузки */}
         <p className="loading-text animated-text">
-          Загрузка сайта...
+          {currentText}
         </p>
       </div>
 
-      {/* Только простые плавающие частицы без лишних элементов */}
+      {/* Минимальные плавающие частицы */}
       <div className="particles">
-        <div className="particle simple"></div>
-        <div className="particle simple"></div>
         <div className="particle simple"></div>
         <div className="particle simple"></div>
         <div className="particle simple"></div>
