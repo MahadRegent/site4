@@ -229,6 +229,9 @@ def main():
     # Test 2: MongoDB connection (includes create and get tests)
     test_results.append(test_mongodb_connection(backend_url))
     
+    # Test 3: Admin path blocking
+    test_results.append(test_admin_path_blocking(backend_url))
+    
     # Summary
     print("\n" + "=" * 50)
     print("🏁 TEST SUMMARY")
@@ -243,6 +246,7 @@ def main():
         print("✅ ALL TESTS PASSED - Backend is working correctly")
         print("✅ No Emergent mentions found in any API responses")
         print("✅ MongoDB connection is working properly")
+        print("✅ Admin path blocking is working correctly")
         sys.exit(0)
     else:
         print("❌ SOME TESTS FAILED - Backend has issues")
