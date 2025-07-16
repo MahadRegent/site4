@@ -137,6 +137,58 @@ def test_get_status_checks(base_url):
         print(f"❌ FAIL: Request failed - {e}")
         return False
 
+def test_admin_path_blocking(base_url):
+    """Test admin path blocking functionality"""
+    print("\n=== Testing Admin Path Blocking ===")
+    
+    admin_paths = [
+        "/admin",
+        "/admin/",
+        "/admin/any-path",
+        "/admin/dashboard",
+        "/admin/users/123",
+        "/wp-admin",
+        "/wp-admin/",
+        "/wp-admin/admin.php",
+        "/phpmyadmin",
+        "/phpmyadmin/",
+        "/phpmyadmin/index.php",
+        "/phpMyAdmin",
+        "/phpMyAdmin/",
+        "/phpMyAdmin/index.php"
+    ]
+    
+    all_passed = True
+    
+    for path in admin_paths:
+        try:
+            print(f"Testing path: {path}")
+            response = requests.get(f"{base_url}{path}", timeout=30, allow_redirects=False)
+            
+            # Should return 301 redirect
+            if response.status_code == 301:
+                # Check redirect location
+                location = response.headers.get('location', '')
+                if location == '/':
+                    print(f"  ✅ PASS: {path} correctly redirects to / with 301")
+                else:
+                    print(f"  ❌ FAIL: {path} redirects to {location}, expected /")
+                    all_passed = False
+            else:
+                print(f"  ❌ FAIL: {path} returned {response.status_code}, expected 301")
+                all_passed = False
+                
+        except requests.exceptions.RequestException as e:
+            print(f"  ❌ FAIL: Request to {path} failed - {e}")
+            all_passed = False
+    
+    if all_passed:
+        print("✅ PASS: All admin paths correctly blocked with 301 redirects")
+    else:
+        print("❌ FAIL: Some admin paths are not properly blocked")
+    
+    return all_passed
+
 def test_mongodb_connection(base_url):
     """Test MongoDB connection by creating and retrieving data"""
     print("\n=== Testing MongoDB Connection ===")
