@@ -84,29 +84,17 @@
   }
 }
 
-/* Floating animation */
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-    opacity: 0.3;
-  }
-  50% {
-    transform: translateY(-20px) rotate(180deg);
-    opacity: 0.6;
-  }
-}
-
-/* Enhanced glow effect */
+/* Enhanced glow effect for logo */
 @keyframes glowEnhanced {
   0%, 100% {
-    opacity: 0.3;
+    opacity: 0.8;
     transform: scale(1);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
   }
   50% {
-    opacity: 0.9;
-    transform: scale(1.1);
-    box-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
+    opacity: 1;
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.5));
   }
 }
 
@@ -141,24 +129,6 @@
   to {
     transform: rotate(360deg);
     border-color: transparent transparent rgba(99, 102, 241, 0.4) transparent;
-  }
-}
-
-/* Matrix rain effect */
-@keyframes matrixRain {
-  0% {
-    transform: translateY(-100vh);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(100vh);
-    opacity: 0;
   }
 }
 
