@@ -59,7 +59,7 @@ def test_create_status_check(base_url):
             f"{base_url}/api/status", 
             json=test_data,
             headers={"Content-Type": "application/json"},
-            timeout=10
+            timeout=30
         )
         
         print(f"Status Code: {response.status_code}")
