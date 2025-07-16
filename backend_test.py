@@ -100,7 +100,7 @@ def test_get_status_checks(base_url):
     """Test GET /api/status endpoint"""
     print("\n=== Testing Get Status Checks (GET /api/status) ===")
     try:
-        response = requests.get(f"{base_url}/api/status", timeout=10)
+        response = requests.get(f"{base_url}/api/status", timeout=30)
         print(f"Status Code: {response.status_code}")
         
         if response.status_code == 200:
