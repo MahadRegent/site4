@@ -71,7 +71,7 @@ const Loading = ({ fadeOut }) => {
 
         {/* Текст загрузки с анимацией */}
         <p className="loading-text animated-text">
-          Загрузка сервера...
+          Загрузка сайта...
         </p>
       </div>
 
