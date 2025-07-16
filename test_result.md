@@ -202,11 +202,14 @@ frontend:
     file: "frontend/public/index.html"
     stuck_count: 0
     priority: "medium"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: true
         agent: "main"
         comment: "Updated page title and meta description that will show in Discord link previews. Now shows VORTEXHOST branding instead of Emergent"
+      - working: true
+        agent: "testing"
+        comment: "✅ Discord link sharing fixed. Page title and meta description now show VORTEXHOST branding for Discord previews. Discord links on site ('О нас' button and footer Discord button) correctly open discord.gg/u2qvmqpNfh. All Discord functionality working properly."
 
 metadata:
   created_by: "main_agent"
