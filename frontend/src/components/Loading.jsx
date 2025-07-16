@@ -5,14 +5,35 @@ const Loading = ({ fadeOut }) => {
   return (
     <div className={`loading-container ${fadeOut ? 'fade-out' : ''}`}>
       <div className="loading-content">
-        {/* Логотип с улучшенной анимацией */}
+        {/* Логотип с улучшенной анимацией - без фона */}
         <div className="logo-container">
           <div className="logo-wrapper">
-            <img 
-              src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiByeD0iOCIgZmlsbD0iIzM3NFc0QSIvPgo8ZGVmcz4KPHN0eWxlPgouY2xzLTEge2ZpbGw6IHdoaXRlOyBzdHJva2U6IHdoaXRlOyBzdHJva2Utd2lkdGg6IDFweDsgfQo8L3N0eWxlPgo8L2RlZnM+CjxyZWN0IHg9IjEwIiB5PSIxMCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiByeD0iMiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxLjUiIHRyYW5zZm9ybT0icm90YXRlKDQ1IDIwIDIwKSIvPgo8Y2lyY2xlIGN4PSIxNSIgY3k9IjE1IiByPSIxLjUiIGZpbGw9IndoaXRlIi8+CjxjaXJjbGUgY3g9IjI1IiBjeT0iMTUiIHI9IjEuNSIgZmlsbD0id2hpdGUiLz4KPGNpcmNsZSBjeD0iMTUiIGN5PSIyNSIgcj0iMS41IiBmaWxsPSJ3aGl0ZSIvPgo8Y2lyY2xlIGN4PSIyNSIgY3k9IjI1IiByPSIxLjUiIGZpbGw9IndoaXRlIi8+CjxsaW5lIHgxPSIxNSIgeTE9IjE1IiB4Mj0iMjUiIHkyPSIxNSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPGxpbmUgeDE9IjE1IiB5MT0iMTUiIHgyPSIxNSIgeTI9IjI1IiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8bGluZSB4MT0iMjUiIHkxPSIxNSIgeDI9IjI1IiB5Mj0iMjUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMS41Ii8+CjxsaW5lIHgxPSIxNSIgeTE9IjI1IiB4Mj0iMjUiIHkyPSIyNSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPGxpbmUgeDE9IjgiIHkxPSIyMCIgeDI9IjEyIiB5Mj0iMjAiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMS41Ii8+CjxsaW5lIHgxPSIyOCIgeTE9IjIwIiB4Mj0iMzIiIHkyPSIyMCIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPGxpbmUgeDE9IjIwIiB5MT0iOCIgeDI9IjIwIiB5Mj0iMTIiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMS41Ii8+CjxsaW5lIHgxPSIyMCIgeTE9IjI4IiB4Mj0iMjAiIHkyPSIzMiIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPGxpbmUgeDE9IjEwIiB5MT0iMTAiIHgyPSIxMyIgeTI9IjEzIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8bGluZSB4MT0iMzAiIHkxPSIxMCIgeDI9IjI3IiB5Mj0iMTMiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMS41Ii8+CjxsaW5lIHgxPSIxMCIgeTE9IjMwIiB4Mj0iMTMiIHkyPSIyNyIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPGxpbmUgeDE9IjMwIiB5MT0iMzAiIHgyPSIyNyIgeTI9IjI3IiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8L3N2Zz4K"
-              alt="VORTEXHOST Logo" 
-              className="logo-img"
-            />
+            <svg 
+              width="100" 
+              height="100" 
+              viewBox="0 0 40 40" 
+              fill="none" 
+              xmlns="http://www.w3.org/2000/svg"
+              className="logo-svg"
+            >
+              <rect x="10" y="10" width="20" height="20" rx="2" fill="none" stroke="white" strokeWidth="1.5" transform="rotate(45 20 20)"/>
+              <circle cx="15" cy="15" r="1.5" fill="white"/>
+              <circle cx="25" cy="15" r="1.5" fill="white"/>
+              <circle cx="15" cy="25" r="1.5" fill="white"/>
+              <circle cx="25" cy="25" r="1.5" fill="white"/>
+              <line x1="15" y1="15" x2="25" y2="15" stroke="white" strokeWidth="1.5"/>
+              <line x1="15" y1="15" x2="15" y2="25" stroke="white" strokeWidth="1.5"/>
+              <line x1="25" y1="15" x2="25" y2="25" stroke="white" strokeWidth="1.5"/>
+              <line x1="15" y1="25" x2="25" y2="25" stroke="white" strokeWidth="1.5"/>
+              <line x1="8" y1="20" x2="12" y2="20" stroke="white" strokeWidth="1.5"/>
+              <line x1="28" y1="20" x2="32" y2="20" stroke="white" strokeWidth="1.5"/>
+              <line x1="20" y1="8" x2="20" y2="12" stroke="white" strokeWidth="1.5"/>
+              <line x1="20" y1="28" x2="20" y2="32" stroke="white" strokeWidth="1.5"/>
+              <line x1="10" y1="10" x2="13" y2="13" stroke="white" strokeWidth="1.5"/>
+              <line x1="30" y1="10" x2="27" y2="13" stroke="white" strokeWidth="1.5"/>
+              <line x1="10" y1="30" x2="13" y2="27" stroke="white" strokeWidth="1.5"/>
+              <line x1="30" y1="30" x2="27" y2="27" stroke="white" strokeWidth="1.5"/>
+            </svg>
             {/* Улучшенный спиннер с множественными кольцами */}
             <div className="logo-spinner primary"></div>
             <div className="logo-spinner secondary"></div>
@@ -54,42 +75,16 @@ const Loading = ({ fadeOut }) => {
         </p>
       </div>
 
-      {/* Улучшенный анимированный фон */}
-      <div className="background-elements">
-        <div className="bg-circle floating"></div>
-        <div className="bg-circle floating delay-1"></div>
-        <div className="bg-circle floating delay-2"></div>
-        <div className="bg-circle floating delay-3"></div>
-        <div className="bg-circle floating delay-4"></div>
-        <div className="bg-circle floating delay-5"></div>
-      </div>
-
-      {/* Улучшенные плавающие частицы */}
+      {/* Только простые плавающие частицы без лишних элементов */}
       <div className="particles">
-        <div className="particle glow"></div>
-        <div className="particle glow"></div>
-        <div className="particle glow"></div>
-        <div className="particle glow"></div>
-        <div className="particle glow"></div>
-        <div className="particle glow"></div>
-        <div className="particle glow"></div>
-        <div className="particle glow"></div>
-        <div className="particle glow"></div>
-        <div className="particle glow"></div>
-        <div className="particle glow"></div>
-        <div className="particle glow"></div>
-        <div className="particle glow"></div>
-        <div className="particle glow"></div>
-        <div className="particle glow"></div>
-      </div>
-
-      {/* Дополнительные эффекты */}
-      <div className="matrix-rain">
-        <div className="matrix-column"></div>
-        <div className="matrix-column"></div>
-        <div className="matrix-column"></div>
-        <div className="matrix-column"></div>
-        <div className="matrix-column"></div>
+        <div className="particle simple"></div>
+        <div className="particle simple"></div>
+        <div className="particle simple"></div>
+        <div className="particle simple"></div>
+        <div className="particle simple"></div>
+        <div className="particle simple"></div>
+        <div className="particle simple"></div>
+        <div className="particle simple"></div>
       </div>
     </div>
   );
