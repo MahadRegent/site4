@@ -203,6 +203,9 @@ test_plan:
   current_focus:
     - "Remove Emergent mentions from HTML"
     - "Remove Emergent badge and analytics"
+    - "Remove admin panel completely"
+    - "Block admin and other directories"
+    - "Backend admin path blocking"
     - "Fix Discord link sharing"
   stuck_tasks: []
   test_all: true
