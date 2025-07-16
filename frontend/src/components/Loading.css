@@ -323,16 +323,17 @@
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.progress-bar {
+.progress-bar-fill {
   background: linear-gradient(90deg, #93c5fd, #6366f1, #8b5cf6, #93c5fd);
   background-size: 300% 100%;
   height: 100%;
   border-radius: 9999px;
-  animation: progressWave 1.5s ease-out, gradientShift 1s ease-in-out infinite;
+  transition: width 0.3s ease-out;
   position: relative;
+  animation: gradientShift 1s ease-in-out infinite;
 }
 
-.progress-bar.wave-effect::after {
+.progress-bar-fill::after {
   content: '';
   position: absolute;
   top: 0;
@@ -340,7 +341,7 @@
   right: 0;
   bottom: 0;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-  animation: progressWave 1.5s ease-out;
+  border-radius: inherit;
 }
 
 .progress-shine {
@@ -350,7 +351,16 @@
   width: 100%;
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
-  animation: progressWave 1.5s ease-out 0.3s;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
 }
 
 .loading-text {
