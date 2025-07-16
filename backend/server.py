@@ -1,4 +1,5 @@
-from fastapi import FastAPI, APIRouter
+from fastapi import FastAPI, APIRouter, HTTPException
+from fastapi.responses import RedirectResponse
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -34,6 +35,28 @@ class StatusCheck(BaseModel):
 
 class StatusCheckCreate(BaseModel):
     client_name: str
+
+# Блокировка админ-путей - перенаправление на главную
+@app.get("/admin")
+@app.get("/admin/")
+@app.get("/admin/{path:path}")
+async def block_admin_paths():
+    """Блокировка всех админ-путей"""
+    return RedirectResponse(url="/", status_code=301)
+
+# Общая блокировка других служебных путей
+@app.get("/wp-admin")
+@app.get("/wp-admin/")
+@app.get("/wp-admin/{path:path}")
+@app.get("/phpmyadmin")
+@app.get("/phpmyadmin/")
+@app.get("/phpmyadmin/{path:path}")
+@app.get("/phpMyAdmin")
+@app.get("/phpMyAdmin/")
+@app.get("/phpMyAdmin/{path:path}")
+async def block_common_paths():
+    """Блокировка общих служебных путей"""
+    return RedirectResponse(url="/", status_code=301)
 
 # Add your routes to the router instead of directly to app
 @api_router.get("/")
