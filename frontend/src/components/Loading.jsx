@@ -1,11 +1,11 @@
 import React from 'react';
 import './Loading.css';
 
-const Loading = () => {
+const Loading = ({ fadeOut }) => {
   return (
-    <div className="loading-container">
+    <div className={`loading-container ${fadeOut ? 'fade-out' : ''}`}>
       <div className="loading-content">
-        {/* Логотип с анимацией */}
+        {/* Логотип с улучшенной анимацией */}
         <div className="logo-container">
           <div className="logo-wrapper">
             <img 
@@ -13,61 +13,83 @@ const Loading = () => {
               alt="VORTEXHOST Logo" 
               className="logo-img"
             />
-            {/* Вращающийся круг вокруг логотипа */}
-            <div className="logo-spinner"></div>
+            {/* Улучшенный спиннер с множественными кольцами */}
+            <div className="logo-spinner primary"></div>
+            <div className="logo-spinner secondary"></div>
+            <div className="logo-spinner tertiary"></div>
           </div>
         </div>
 
-        {/* Название с анимацией появления */}
+        {/* Название с улучшенной анимацией */}
         <h1 className="main-title">
           VORTEXHOST
         </h1>
 
-        {/* Подзаголовок */}
-        <p className="subtitle">
+        {/* Подзаголовок с эффектом печатания */}
+        <p className="subtitle typewriter">
           Minecraft хостинг
         </p>
 
-        {/* Анимированный индикатор загрузки */}
+        {/* Улучшенный индикатор загрузки с пульсацией */}
         <div className="dots-container">
           <div className="dots-wrapper">
-            <div className="dot"></div>
-            <div className="dot"></div>
-            <div className="dot"></div>
+            <div className="dot pulse"></div>
+            <div className="dot pulse"></div>
+            <div className="dot pulse"></div>
+            <div className="dot pulse"></div>
+            <div className="dot pulse"></div>
           </div>
         </div>
 
-        {/* Прогресс бар */}
+        {/* Прогресс бар с волновым эффектом */}
         <div className="progress-container">
-          <div className="progress-bar"></div>
+          <div className="progress-bar wave-effect">
+            <div className="progress-shine"></div>
+          </div>
         </div>
 
-        {/* Текст загрузки */}
-        <p className="loading-text">
+        {/* Текст загрузки с анимацией */}
+        <p className="loading-text animated-text">
           Загрузка сервера...
         </p>
       </div>
 
-      {/* Анимированный фон */}
+      {/* Улучшенный анимированный фон */}
       <div className="background-elements">
-        <div className="bg-circle"></div>
-        <div className="bg-circle"></div>
-        <div className="bg-circle"></div>
-        <div className="bg-circle"></div>
+        <div className="bg-circle floating"></div>
+        <div className="bg-circle floating delay-1"></div>
+        <div className="bg-circle floating delay-2"></div>
+        <div className="bg-circle floating delay-3"></div>
+        <div className="bg-circle floating delay-4"></div>
+        <div className="bg-circle floating delay-5"></div>
       </div>
 
-      {/* Плавающие частицы */}
+      {/* Улучшенные плавающие частицы */}
       <div className="particles">
-        <div className="particle"></div>
-        <div className="particle"></div>
-        <div className="particle"></div>
-        <div className="particle"></div>
-        <div className="particle"></div>
-        <div className="particle"></div>
-        <div className="particle"></div>
-        <div className="particle"></div>
-        <div className="particle"></div>
-        <div className="particle"></div>
+        <div className="particle glow"></div>
+        <div className="particle glow"></div>
+        <div className="particle glow"></div>
+        <div className="particle glow"></div>
+        <div className="particle glow"></div>
+        <div className="particle glow"></div>
+        <div className="particle glow"></div>
+        <div className="particle glow"></div>
+        <div className="particle glow"></div>
+        <div className="particle glow"></div>
+        <div className="particle glow"></div>
+        <div className="particle glow"></div>
+        <div className="particle glow"></div>
+        <div className="particle glow"></div>
+        <div className="particle glow"></div>
+      </div>
+
+      {/* Дополнительные эффекты */}
+      <div className="matrix-rain">
+        <div className="matrix-column"></div>
+        <div className="matrix-column"></div>
+        <div className="matrix-column"></div>
+        <div className="matrix-column"></div>
+        <div className="matrix-column"></div>
       </div>
     </div>
   );
