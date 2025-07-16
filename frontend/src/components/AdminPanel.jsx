@@ -19,9 +19,10 @@ const AdminPanel = () => {
   const [planForm, setPlanForm] = useState({
     name: '',
     price: '',
+    cpu: '',
     ram: '',
     disk: '',
-    cpu: '',
+    databases: '',
     region: '',
     features: [],
     popular: false
@@ -34,9 +35,10 @@ const AdminPanel = () => {
     setPlanForm({
       name: plan.name,
       price: plan.price.toString(),
+      cpu: plan.cpu,
       ram: plan.ram,
       disk: plan.disk,
-      cpu: plan.cpu,
+      databases: plan.databases,
       region: plan.region,
       features: [...plan.features],
       popular: plan.popular
@@ -44,7 +46,7 @@ const AdminPanel = () => {
   };
 
   const handleSavePlan = async () => {
-    if (!planForm.name || !planForm.price || !planForm.ram || !planForm.disk || !planForm.cpu || !planForm.region) {
+    if (!planForm.name || !planForm.price || !planForm.cpu || !planForm.ram || !planForm.disk || !planForm.databases || !planForm.region) {
       toast({
         title: "Ошибка",
         description: "Заполните все обязательные поля",
@@ -117,9 +119,10 @@ const AdminPanel = () => {
     setPlanForm({
       name: '',
       price: '',
+      cpu: '',
       ram: '',
       disk: '',
-      cpu: '',
+      databases: '',
       region: '',
       features: [],
       popular: false
@@ -144,15 +147,15 @@ const AdminPanel = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-4">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-slate-900 p-4">
       <div className="container mx-auto max-w-7xl">
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-white mb-2">Панель администратора</h1>
-          <p className="text-slate-300">Управление тарифными планами VORTEXHOST</p>
+          <p className="text-gray-300">Управление тарифными планами VORTEXHOST</p>
         </div>
 
         <Tabs defaultValue="plans" className="space-y-6">
-          <TabsList className="bg-slate-800 border-slate-700">
+          <TabsList className="bg-gray-800 border-gray-700">
             <TabsTrigger value="plans" className="text-white">Тарифные планы</TabsTrigger>
             <TabsTrigger value="settings" className="text-white">Настройки</TabsTrigger>
           </TabsList>
@@ -160,7 +163,7 @@ const AdminPanel = () => {
           <TabsContent value="plans" className="space-y-6">
             <div className="grid lg:grid-cols-2 gap-6">
               {/* Plan Form */}
-              <Card className="bg-slate-800/50 border-slate-700">
+              <Card className="bg-gray-800/50 border-gray-700">
                 <CardHeader>
                   <CardTitle className="text-white">
                     {editingPlan ? 'Редактировать план' : 'Создать новый план'}
@@ -169,69 +172,80 @@ const AdminPanel = () => {
                 <CardContent className="space-y-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="name" className="text-slate-300">Название плана</Label>
+                      <Label htmlFor="name" className="text-gray-300">Название плана</Label>
                       <Input
                         id="name"
                         value={planForm.name}
                         onChange={(e) => setPlanForm({...planForm, name: e.target.value})}
-                        className="bg-slate-700 border-slate-600 text-white"
-                        placeholder="Starter"
+                        className="bg-gray-700 border-gray-600 text-white"
+                        placeholder="Axolotl"
                       />
                     </div>
                     <div>
-                      <Label htmlFor="price" className="text-slate-300">Цена (₽)</Label>
+                      <Label htmlFor="price" className="text-gray-300">Цена (₽)</Label>
                       <Input
                         id="price"
                         type="number"
                         value={planForm.price}
                         onChange={(e) => setPlanForm({...planForm, price: e.target.value})}
-                        className="bg-slate-700 border-slate-600 text-white"
-                        placeholder="299"
+                        className="bg-gray-700 border-gray-600 text-white"
+                        placeholder="109"
                       />
                     </div>
                   </div>
 
+                  <div>
+                    <Label htmlFor="cpu" className="text-gray-300">Процессор</Label>
+                    <Input
+                      id="cpu"
+                      value={planForm.cpu}
+                      onChange={(e) => setPlanForm({...planForm, cpu: e.target.value})}
+                      className="bg-gray-700 border-gray-600 text-white"
+                      placeholder="1 vCPU Ryzen 9 5950X"
+                    />
+                  </div>
+
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="ram" className="text-slate-300">Оперативная память</Label>
+                      <Label htmlFor="ram" className="text-gray-300">Оперативная память</Label>
                       <Input
                         id="ram"
                         value={planForm.ram}
                         onChange={(e) => setPlanForm({...planForm, ram: e.target.value})}
-                        className="bg-slate-700 border-slate-600 text-white"
-                        placeholder="2GB"
+                        className="bg-gray-700 border-gray-600 text-white"
+                        placeholder="2 GB DDR5"
                       />
                     </div>
                     <div>
-                      <Label htmlFor="disk" className="text-slate-300">Дисковое пространство</Label>
+                      <Label htmlFor="disk" className="text-gray-300">Хранилище</Label>
                       <Input
                         id="disk"
                         value={planForm.disk}
                         onChange={(e) => setPlanForm({...planForm, disk: e.target.value})}
-                        className="bg-slate-700 border-slate-600 text-white"
-                        placeholder="10GB SSD"
+                        className="bg-gray-700 border-gray-600 text-white"
+                        placeholder="20 GB NVMe SSD"
                       />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="cpu" className="text-slate-300">Процессор</Label>
+                      <Label htmlFor="databases" className="text-gray-300">Базы данных</Label>
                       <Input
-                        id="cpu"
-                        value={planForm.cpu}
-                        onChange={(e) => setPlanForm({...planForm, cpu: e.target.value})}
-                        className="bg-slate-700 border-slate-600 text-white"
-                        placeholder="1 Core"
+                        id="databases"
+                        value={planForm.databases}
+                        onChange={(e) => setPlanForm({...planForm, databases: e.target.value})}
+                        className="bg-gray-700 border-gray-600 text-white"
+                        placeholder="5 БД"
                       />
                     </div>
                     <div>
-                      <Label htmlFor="region" className="text-slate-300">Регион</Label>
+                      <Label htmlFor="region" className="text-gray-300">Регион</Label>
                       <Select value={planForm.region} onValueChange={(value) => setPlanForm({...planForm, region: value})}>
-                        <SelectTrigger className="bg-slate-700 border-slate-600 text-white">
+                        <SelectTrigger className="bg-gray-700 border-gray-600 text-white">
                           <SelectValue placeholder="Выберите регион" />
                         </SelectTrigger>
-                        <SelectContent className="bg-slate-700 border-slate-600">
+                        <SelectContent className="bg-gray-700 border-gray-600">
                           {mockRegions.map(region => (
                             <SelectItem key={region.id} value={region.name} className="text-white">
                               {region.flag} {region.name}
@@ -243,22 +257,22 @@ const AdminPanel = () => {
                   </div>
 
                   <div>
-                    <Label className="text-slate-300">Особенности плана</Label>
+                    <Label className="text-gray-300">Особенности плана</Label>
                     <div className="flex gap-2 mt-2">
                       <Input
                         value={newFeature}
                         onChange={(e) => setNewFeature(e.target.value)}
-                        className="bg-slate-700 border-slate-600 text-white"
+                        className="bg-gray-700 border-gray-600 text-white"
                         placeholder="Добавить особенность"
                         onKeyPress={(e) => e.key === 'Enter' && addFeature()}
                       />
-                      <Button onClick={addFeature} className="bg-green-600 hover:bg-green-700">
+                      <Button onClick={addFeature} className="bg-gray-600 hover:bg-gray-700">
                         Добавить
                       </Button>
                     </div>
                     <div className="flex flex-wrap gap-2 mt-2">
                       {planForm.features.map((feature, index) => (
-                        <Badge key={index} className="bg-slate-700 text-white">
+                        <Badge key={index} className="bg-gray-700 text-white">
                           {feature}
                           <button
                             onClick={() => removeFeature(feature)}
@@ -277,16 +291,16 @@ const AdminPanel = () => {
                       id="popular"
                       checked={planForm.popular}
                       onChange={(e) => setPlanForm({...planForm, popular: e.target.checked})}
-                      className="w-4 h-4 text-green-600 bg-slate-700 border-slate-600 rounded"
+                      className="w-4 h-4 text-gray-600 bg-gray-700 border-gray-600 rounded"
                     />
-                    <Label htmlFor="popular" className="text-slate-300">Популярный план</Label>
+                    <Label htmlFor="popular" className="text-gray-300">Популярный план</Label>
                   </div>
 
                   <div className="flex gap-2">
                     <Button 
                       onClick={handleSavePlan}
                       disabled={loading}
-                      className="bg-green-600 hover:bg-green-700"
+                      className="bg-gray-600 hover:bg-gray-700"
                     >
                       {loading ? 'Сохранение...' : editingPlan ? 'Обновить' : 'Создать'}
                     </Button>
@@ -294,7 +308,7 @@ const AdminPanel = () => {
                       <Button 
                         onClick={resetForm}
                         variant="outline"
-                        className="border-slate-600 text-slate-300"
+                        className="border-gray-600 text-gray-300"
                       >
                         Отменить
                       </Button>
@@ -304,22 +318,22 @@ const AdminPanel = () => {
               </Card>
 
               {/* Plans List */}
-              <Card className="bg-slate-800/50 border-slate-700">
+              <Card className="bg-gray-800/50 border-gray-700">
                 <CardHeader>
                   <CardTitle className="text-white">Текущие планы</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-4">
+                  <div className="space-y-4 max-h-96 overflow-y-auto">
                     {plans.map(plan => (
-                      <div key={plan.id} className="bg-slate-700/50 p-4 rounded-lg border border-slate-600">
+                      <div key={plan.id} className="bg-gray-700/50 p-4 rounded-lg border border-gray-600">
                         <div className="flex justify-between items-start mb-2">
                           <div>
                             <h3 className="text-white font-semibold text-lg">{plan.name}</h3>
-                            <p className="text-green-400 text-xl font-bold">{plan.price}₽/мес</p>
+                            <p className="text-gray-400 text-xl font-bold">{plan.price}₽/мес</p>
                           </div>
                           <div className="flex gap-2">
                             {plan.popular && (
-                              <Badge className="bg-green-600 text-white">Популярный</Badge>
+                              <Badge className="bg-gray-600 text-white">Популярный</Badge>
                             )}
                             <Button
                               onClick={() => handleEditPlan(plan)}
@@ -338,10 +352,11 @@ const AdminPanel = () => {
                             </Button>
                           </div>
                         </div>
-                        <div className="grid grid-cols-2 gap-2 text-sm text-slate-300">
+                        <div className="grid grid-cols-1 gap-1 text-sm text-gray-300">
+                          <div>CPU: {plan.cpu}</div>
                           <div>RAM: {plan.ram}</div>
                           <div>Диск: {plan.disk}</div>
-                          <div>CPU: {plan.cpu}</div>
+                          <div>БД: {plan.databases}</div>
                           <div>Регион: {plan.region}</div>
                         </div>
                       </div>
@@ -353,36 +368,36 @@ const AdminPanel = () => {
           </TabsContent>
 
           <TabsContent value="settings" className="space-y-6">
-            <Card className="bg-slate-800/50 border-slate-700">
+            <Card className="bg-gray-800/50 border-gray-700">
               <CardHeader>
                 <CardTitle className="text-white">Настройки сайта</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <Label htmlFor="site-title" className="text-slate-300">Заголовок сайта</Label>
+                  <Label htmlFor="site-title" className="text-gray-300">Заголовок сайта</Label>
                   <Input
                     id="site-title"
                     defaultValue="VORTEXHOST"
-                    className="bg-slate-700 border-slate-600 text-white"
+                    className="bg-gray-700 border-gray-600 text-white"
                   />
                 </div>
                 <div>
-                  <Label htmlFor="site-description" className="text-slate-300">Описание сайта</Label>
+                  <Label htmlFor="site-description" className="text-gray-300">Описание сайта</Label>
                   <Textarea
                     id="site-description"
                     defaultValue="Лучший хостинг для Minecraft серверов"
-                    className="bg-slate-700 border-slate-600 text-white"
+                    className="bg-gray-700 border-gray-600 text-white"
                   />
                 </div>
                 <div>
-                  <Label htmlFor="contact-email" className="text-slate-300">Email для связи</Label>
+                  <Label htmlFor="contact-email" className="text-gray-300">Email для связи</Label>
                   <Input
                     id="contact-email"
-                    defaultValue="support@vortexhost.ru"
-                    className="bg-slate-700 border-slate-600 text-white"
+                    defaultValue="support@vortexhost.pro"
+                    className="bg-gray-700 border-gray-600 text-white"
                   />
                 </div>
-                <Button className="bg-green-600 hover:bg-green-700">
+                <Button className="bg-gray-600 hover:bg-gray-700">
                   Сохранить настройки
                 </Button>
               </CardContent>
