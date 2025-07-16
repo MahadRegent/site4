@@ -353,22 +353,3 @@ export const mockFAQ = [
     answer: "Вы можете создать резервную копию вручную в любое время через панель управления."
   }
 ];
-
-// Mock functions for admin panel
-export const savePlan = (planData) => {
-  console.log('Saving plan:', planData);
-  // Simulate API call
-  return new Promise(resolve => setTimeout(resolve, 1000));
-};
-
-export const deletePlan = (planId) => {
-  console.log('Deleting plan:', planId);
-  // Simulate API call
-  return new Promise(resolve => setTimeout(resolve, 500));
-};
-
-export const saveSettings = (settings) => {
-  console.log('Saving settings:', settings);
-  // Simulate API call
-  return new Promise(resolve => setTimeout(resolve, 1000));
-};
