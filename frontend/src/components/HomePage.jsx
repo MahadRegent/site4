@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from './ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
@@ -7,13 +7,42 @@ import { mockPlans, mockFeatures, mockTestimonials } from '../mock';
 
 const HomePage = () => {
   const [activeNavItem, setActiveNavItem] = useState('');
+  const [isVisible, setIsVisible] = useState({});
   const { toast } = useToast();
+
+  // Intersection Observer для анимации появления элементов
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(prev => ({
+              ...prev,
+              [entry.target.id]: true
+            }));
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const sections = document.querySelectorAll('[data-animate]');
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, []);
 
   const scrollToSection = (sectionId) => {
     setActiveNavItem(sectionId);
-    document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
     // Remove active state after animation
-    setTimeout(() => setActiveNavItem(''), 300);
+    setTimeout(() => setActiveNavItem(''), 500);
   };
 
   const scrollToPricing = () => {
@@ -41,62 +70,48 @@ const HomePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-slate-900">
-      {/* Navigation */}
-      <nav className="bg-black/20 backdrop-blur-sm border-b border-gray-700/50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-slate-900 overflow-hidden">
+      {/* Enhanced Navigation */}
+      <nav className="bg-black/20 backdrop-blur-sm border-b border-gray-700/50 fixed w-full top-0 z-50 transition-all duration-300">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-3 transform hover:scale-105 transition-all duration-300">
               <img 
                 src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiByeD0iOCIgZmlsbD0iIzM3NFc0QSIvPgo8ZGVmcz4KPHN0eWxlPgouY2xzLTEge2ZpbGw6IHdoaXRlOyBzdHJva2U6IHdoaXRlOyBzdHJva2Utd2lkdGg6IDFweDsgfQo8L3N0eWxlPgo8L2RlZnM+CjxyZWN0IHg9IjEwIiB5PSIxMCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiByeD0iMiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxLjUiIHRyYW5zZm9ybT0icm90YXRlKDQ1IDIwIDIwKSIvPgo8Y2lyY2xlIGN4PSIxNSIgY3k9IjE1IiByPSIxLjUiIGZpbGw9IndoaXRlIi8+CjxjaXJjbGUgY3g9IjI1IiBjeT0iMTUiIHI9IjEuNSIgZmlsbD0id2hpdGUiLz4KPGNpcmNsZSBjeD0iMTUiIGN5PSIyNSIgcj0iMS41IiBmaWxsPSJ3aGl0ZSIvPgo8Y2lyY2xlIGN4PSIyNSIgY3k9IjI1IiByPSIxLjUiIGZpbGw9IndoaXRlIi8+CjxsaW5lIHgxPSIxNSIgeTE9IjE1IiB4Mj0iMjUiIHkyPSIxNSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPGxpbmUgeDE9IjE1IiB5MT0iMTUiIHgyPSIxNSIgeTI9IjI1IiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8bGluZSB4MT0iMjUiIHkxPSIxNSIgeDI9IjI1IiB5Mj0iMjUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMS41Ii8+CjxsaW5lIHgxPSIxNSIgeTE9IjI1IiB4Mj0iMjUiIHkyPSIyNSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPGxpbmUgeDE9IjgiIHkxPSIyMCIgeDI9IjEyIiB5Mj0iMjAiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMS41Ii8+CjxsaW5lIHgxPSIyOCIgeTE9IjIwIiB4Mj0iMzIiIHkyPSIyMCIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPGxpbmUgeDE9IjIwIiB5MT0iOCIgeDI9IjIwIiB5Mj0iMTIiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMS41Ii8+CjxsaW5lIHgxPSIyMCIgeTE9IjI4IiB4Mj0iMjAiIHkyPSIzMiIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPGxpbmUgeDE9IjEwIiB5MT0iMTAiIHgyPSIxMyIgeTI9IjEzIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8bGluZSB4MT0iMzAiIHkxPSIxMCIgeDI9IjI3IiB5Mj0iMTMiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMS41Ii8+CjxsaW5lIHgxPSIxMCIgeTE9IjMwIiB4Mj0iMTMiIHkyPSIyNyIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPGxpbmUgeDE9IjMwIiB5MT0iMzAiIHgyPSIyNyIgeTI9IjI3IiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8L3N2Zz4K"
                 alt="VORTEXHOST Logo" 
-                className="w-10 h-10" 
+                className="w-10 h-10 filter drop-shadow-lg" 
               />
-              <span className="text-2xl font-bold text-white">VORTEXHOST</span>
+              <span className="text-2xl font-bold text-white bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                VORTEXHOST
+              </span>
             </div>
             <div className="hidden md:flex space-x-8">
-              <button 
-                onClick={() => scrollToSection('home')}
-                className={`text-white hover:text-gray-300 transition-all duration-200 transform ${
-                  activeNavItem === 'home' ? 'scale-110 text-gray-300' : ''
-                }`}
-              >
-                Главная
-              </button>
-              <button 
-                onClick={() => scrollToSection('features')}
-                className={`text-white hover:text-gray-300 transition-all duration-200 transform ${
-                  activeNavItem === 'features' ? 'scale-110 text-gray-300' : ''
-                }`}
-              >
-                Возможности
-              </button>
-              <button 
-                onClick={() => scrollToSection('pricing')}
-                className={`text-white hover:text-gray-300 transition-all duration-200 transform ${
-                  activeNavItem === 'pricing' ? 'scale-110 text-gray-300' : ''
-                }`}
-              >
-                Тарифы
-              </button>
+              {[
+                { id: 'home', label: 'Главная' },
+                { id: 'features', label: 'Возможности' },
+                { id: 'pricing', label: 'Тарифы' },
+                { id: 'contact', label: 'Контакты' }
+              ].map((item) => (
+                <button 
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`nav-item text-white hover:text-gray-300 transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 relative ${
+                    activeNavItem === item.id ? 'scale-110 text-gray-300' : ''
+                  }`}
+                >
+                  {item.label}
+                </button>
+              ))}
               <button 
                 onClick={handleAboutClick}
-                className="text-white hover:text-gray-300 transition-all duration-200 transform hover:scale-110"
+                className="nav-item text-white hover:text-gray-300 transition-all duration-300 transform hover:scale-110 hover:-translate-y-1"
               >
                 О нас
-              </button>
-              <button 
-                onClick={() => scrollToSection('contact')}
-                className={`text-white hover:text-gray-300 transition-all duration-200 transform ${
-                  activeNavItem === 'contact' ? 'scale-110 text-gray-300' : ''
-                }`}
-              >
-                Контакты
               </button>
             </div>
             <Button 
               onClick={handlePanelClick}
-              className="bg-gray-600 hover:bg-gray-700 text-white transition-all duration-200 transform hover:scale-105"
+              className="bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 text-white transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-lg hover:shadow-xl"
             >
               Панель управления
             </Button>
@@ -104,8 +119,8 @@ const HomePage = () => {
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section id="home" className="relative py-20 overflow-hidden">
+      {/* Enhanced Hero Section */}
+      <section id="home" className="relative pt-32 pb-20 overflow-hidden">
         <div 
           className="absolute inset-0 opacity-20"
           style={{
@@ -116,17 +131,35 @@ const HomePage = () => {
         />
         <div className="container mx-auto px-4 relative">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+            <h1 
+              data-animate
+              id="hero-title"
+              className={`text-5xl md:text-7xl font-bold text-white mb-6 leading-tight transform transition-all duration-1000 ${
+                isVisible['hero-title'] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+              }`}
+            >
               Лучший хостинг для
-              <span className="bg-gradient-to-r from-gray-400 to-gray-600 bg-clip-text text-transparent"> Minecraft</span>
+              <span className="bg-gradient-to-r from-gray-400 to-gray-600 bg-clip-text text-transparent block md:inline"> Minecraft</span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
+            <p 
+              data-animate
+              id="hero-subtitle"
+              className={`text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed transform transition-all duration-1000 delay-300 ${
+                isVisible['hero-subtitle'] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+              }`}
+            >
               Создай свой мир с мгновенной настройкой, защитой от DDoS и круглосуточной поддержкой
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div 
+              data-animate
+              id="hero-cta"
+              className={`flex flex-col sm:flex-row gap-4 justify-center transform transition-all duration-1000 delay-600 ${
+                isVisible['hero-cta'] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+              }`}
+            >
               <Button 
                 onClick={scrollToPricing}
-                className="bg-gray-600 hover:bg-gray-700 text-white px-8 py-4 text-lg font-semibold transform hover:scale-105 transition-all duration-200"
+                className="bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 text-white px-8 py-4 text-lg font-semibold transform hover:scale-105 hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-xl"
               >
                 Выбрать тариф
               </Button>
