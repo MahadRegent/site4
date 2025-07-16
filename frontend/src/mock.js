@@ -159,7 +159,7 @@ export const mockPlans = [
   {
     id: 8,
     name: "Wither",
-    price: 664,
+    price: 669,
     originalPrice: 1329,
     cpu: "5 vCPU Ryzen 9 5950X",
     ram: "12 GB DDR5",
@@ -183,7 +183,7 @@ export const mockPlans = [
   {
     id: 9,
     name: "Dragon",
-    price: 914,
+    price: 919,
     originalPrice: 1829,
     cpu: "6 vCPU Ryzen 9 5950X",
     ram: "16 GB DDR5",
@@ -208,7 +208,7 @@ export const mockPlans = [
   {
     id: 10,
     name: "Pyzh",
-    price: 1364,
+    price: 1369,
     originalPrice: 2729,
     cpu: "8 vCPU Ryzen 9 5950X",
     ram: "24 GB DDR5",
@@ -233,7 +233,7 @@ export const mockPlans = [
   {
     id: 11,
     name: "Turbo Pyzh",
-    price: 1814,
+    price: 1819,
     originalPrice: 3629,
     cpu: "10 vCPU Ryzen 9 5950X",
     ram: "32 GB DDR5",

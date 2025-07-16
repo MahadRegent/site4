@@ -2,12 +2,10 @@ import React, { useState } from 'react';
 import { Button } from './ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { useToast } from '../hooks/use-toast';
-import { mockPlans, mockFeatures, mockTestimonials, mockRegions } from '../mock';
+import { mockPlans, mockFeatures, mockTestimonials } from '../mock';
 
 const HomePage = () => {
-  const [selectedRegion, setSelectedRegion] = useState('Германия');
   const [activeNavItem, setActiveNavItem] = useState('');
   const { toast } = useToast();
 
@@ -22,18 +20,6 @@ const HomePage = () => {
     scrollToSection('pricing');
   };
 
-  const handleRegionChange = (region) => {
-    setSelectedRegion(region);
-    if (region === 'Россия') {
-      toast({
-        title: "Регион недоступен",
-        description: "Локация Россия пока недоступна, но появится в скором времени!",
-        variant: "destructive"
-      });
-      setSelectedRegion('Германия');
-    }
-  };
-
   const handleSelectPlan = () => {
     window.open('https://bill.vortexhost.pro', '_blank');
   };
@@ -46,7 +32,13 @@ const HomePage = () => {
     window.open('https://discord.gg/u2qvmqpNfh', '_blank');
   };
 
-  const filteredPlans = mockPlans.filter(plan => plan.region === selectedRegion);
+  const handleTicketsClick = () => {
+    window.open('https://discord.gg/u2qvmqpNfh', '_blank');
+  };
+
+  const handleDiscordClick = () => {
+    window.open('https://discord.gg/u2qvmqpNfh', '_blank');
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-slate-900">
@@ -54,10 +46,12 @@ const HomePage = () => {
       <nav className="bg-black/20 backdrop-blur-sm border-b border-gray-700/50">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gray-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">
-                V
-              </div>
+            <div className="flex items-center space-x-3">
+              <img 
+                src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiByeD0iOCIgZmlsbD0iIzM3NFc0QSIvPgo8ZGVmcz4KPHN0eWxlPgouY2xzLTEge2ZpbGw6IHdoaXRlOyBzdHJva2U6IHdoaXRlOyBzdHJva2Utd2lkdGg6IDFweDsgfQo8L3N0eWxlPgo8L2RlZnM+CjxyZWN0IHg9IjEwIiB5PSIxMCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiByeD0iMiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxLjUiIHRyYW5zZm9ybT0icm90YXRlKDQ1IDIwIDIwKSIvPgo8Y2lyY2xlIGN4PSIxNSIgY3k9IjE1IiByPSIxLjUiIGZpbGw9IndoaXRlIi8+CjxjaXJjbGUgY3g9IjI1IiBjeT0iMTUiIHI9IjEuNSIgZmlsbD0id2hpdGUiLz4KPGNpcmNsZSBjeD0iMTUiIGN5PSIyNSIgcj0iMS41IiBmaWxsPSJ3aGl0ZSIvPgo8Y2lyY2xlIGN4PSIyNSIgY3k9IjI1IiByPSIxLjUiIGZpbGw9IndoaXRlIi8+CjxsaW5lIHgxPSIxNSIgeTE9IjE1IiB4Mj0iMjUiIHkyPSIxNSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPGxpbmUgeDE9IjE1IiB5MT0iMTUiIHgyPSIxNSIgeTI9IjI1IiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8bGluZSB4MT0iMjUiIHkxPSIxNSIgeDI9IjI1IiB5Mj0iMjUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMS41Ii8+CjxsaW5lIHgxPSIxNSIgeTE9IjI1IiB4Mj0iMjUiIHkyPSIyNSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPGxpbmUgeDE9IjgiIHkxPSIyMCIgeDI9IjEyIiB5Mj0iMjAiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMS41Ii8+CjxsaW5lIHgxPSIyOCIgeTE9IjIwIiB4Mj0iMzIiIHkyPSIyMCIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPGxpbmUgeDE9IjIwIiB5MT0iOCIgeDI9IjIwIiB5Mj0iMTIiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMS41Ii8+CjxsaW5lIHgxPSIyMCIgeTE9IjI4IiB4Mj0iMjAiIHkyPSIzMiIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPGxpbmUgeDE9IjEwIiB5MT0iMTAiIHgyPSIxMyIgeTI9IjEzIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8bGluZSB4MT0iMzAiIHkxPSIxMCIgeDI9IjI3IiB5Mj0iMTMiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMS41Ii8+CjxsaW5lIHgxPSIxMCIgeTE9IjMwIiB4Mj0iMTMiIHkyPSIyNyIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPGxpbmUgeDE9IjMwIiB5MT0iMzAiIHgyPSIyNyIgeTI9IjI3IiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8L3N2Zz4K"
+                alt="VORTEXHOST Logo" 
+                className="w-10 h-10" 
+              />
               <span className="text-2xl font-bold text-white">VORTEXHOST</span>
             </div>
             <div className="hidden md:flex space-x-8">
@@ -113,9 +107,9 @@ const HomePage = () => {
       {/* Hero Section */}
       <section id="home" className="relative py-20 overflow-hidden">
         <div 
-          className="absolute inset-0 opacity-10"
+          className="absolute inset-0 opacity-20"
           style={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1646729471602-3387c6715f3f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDJ8MHwxfHNlYXJjaHwxfHxtaW5lY3JhZnQlMjBzZXJ2ZXJ8ZW58MHx8fGdyZWVufDE3NTI2OTE0NTR8MA&ixlib=rb-4.1.0&q=85)',
+            backgroundImage: 'url(https://images.unsplash.com/photo-1632017734927-48988a0efae7?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NjZ8MHwxfHNlYXJjaHwxfHxnYW1pbmclMjBzZXJ2ZXJzfGVufDB8fHx8MTc1MjY5NDQ0NXww&ixlib=rb-4.1.0&q=85)',
             backgroundSize: 'cover',
             backgroundPosition: 'center'
           }}
@@ -178,31 +172,12 @@ const HomePage = () => {
               Тарифные планы
             </h2>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-8">
-              Выберите подходящий тариф для вашего сервера
+              Выберите подходящий тариф для вашего сервера в Германии 🇩🇪
             </p>
-            
-            {/* Region Selector */}
-            <div className="flex justify-center mb-8">
-              <div className="bg-black/40 p-4 rounded-lg border border-gray-700/50">
-                <label className="text-white text-sm font-medium mb-2 block">Выберите регион:</label>
-                <Select value={selectedRegion} onValueChange={handleRegionChange}>
-                  <SelectTrigger className="w-48 bg-gray-800 border-gray-600 text-white">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent className="bg-gray-800 border-gray-600">
-                    {mockRegions.map(region => (
-                      <SelectItem key={region.id} value={region.name} className="text-white">
-                        {region.flag} {region.name} {!region.available && '(Недоступно)'}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
-            {filteredPlans.map((plan) => (
+            {mockPlans.map((plan) => (
               <Card key={plan.id} className={`relative bg-black/40 border-2 transition-all duration-300 hover:transform hover:scale-105 ${
                 plan.popular ? 'border-gray-500 shadow-lg shadow-gray-500/20' : 'border-gray-700/50'
               }`}>
@@ -233,9 +208,6 @@ const HomePage = () => {
                     </div>
                     <div className="text-gray-300">
                       <span className="font-semibold">Базы данных:</span> {plan.databases}
-                    </div>
-                    <div className="text-gray-300">
-                      <span className="font-semibold">Регион:</span> 🇩🇪 {plan.region}
                     </div>
                   </div>
                   <div className="border-t border-gray-700/50 pt-4">
@@ -310,9 +282,11 @@ const HomePage = () => {
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center space-x-2 mb-4">
-                <div className="w-8 h-8 bg-gray-600 rounded-lg flex items-center justify-center text-white font-bold">
-                  V
-                </div>
+                <img 
+                  src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiByeD0iOCIgZmlsbD0iIzM3NFc0QSIvPgo8ZGVmcz4KPHN0eWxlPgouY2xzLTEge2ZpbGw6IHdoaXRlOyBzdHJva2U6IHdoaXRlOyBzdHJva2Utd2lkdGg6IDFweDsgfQo8L3N0eWxlPgo8L2RlZnM+CjxyZWN0IHg9IjEwIiB5PSIxMCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiByeD0iMiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxLjUiIHRyYW5zZm9ybT0icm90YXRlKDQ1IDIwIDIwKSIvPgo8Y2lyY2xlIGN4PSIxNSIgY3k9IjE1IiByPSIxLjUiIGZpbGw9IndoaXRlIi8+CjxjaXJjbGUgY3g9IjI1IiBjeT0iMTUiIHI9IjEuNSIgZmlsbD0id2hpdGUiLz4KPGNpcmNsZSBjeD0iMTUiIGN5PSIyNSIgcj0iMS41IiBmaWxsPSJ3aGl0ZSIvPgo8Y2lyY2xlIGN4PSIyNSIgY3k9IjI1IiByPSIxLjUiIGZpbGw9IndoaXRlIi8+CjxsaW5lIHgxPSIxNSIgeTE9IjE1IiB4Mj0iMjUiIHkyPSIxNSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPGxpbmUgeDE9IjE1IiB5MT0iMTUiIHgyPSIxNSIgeTI9IjI1IiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8bGluZSB4MT0iMjUiIHkxPSIxNSIgeDI9IjI1IiB5Mj0iMjUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMS41Ii8+CjxsaW5lIHgxPSIxNSIgeTE9IjI1IiB4Mj0iMjUiIHkyPSIyNSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPGxpbmUgeDE9IjgiIHkxPSIyMCIgeDI9IjEyIiB5Mj0iMjAiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMS41Ii8+CjxsaW5lIHgxPSIyOCIgeTE9IjIwIiB4Mj0iMzIiIHkyPSIyMCIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPGxpbmUgeDE9IjIwIiB5MT0iOCIgeDI9IjIwIiB5Mj0iMTIiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMS41Ii8+CjxsaW5lIHgxPSIyMCIgeTE9IjI4IiB4Mj0iMjAiIHkyPSIzMiIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPGxpbmUgeDE9IjEwIiB5MT0iMTAiIHgyPSIxMyIgeTI9IjEzIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8bGluZSB4MT0iMzAiIHkxPSIxMCIgeDI9IjI3IiB5Mj0iMTMiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMS41Ii8+CjxsaW5lIHgxPSIxMCIgeTE9IjMwIiB4Mj0iMTMiIHkyPSIyNyIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPGxpbmUgeDE9IjMwIiB5MT0iMzAiIHgyPSIyNyIgeTI9IjI3IiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8L3N2Zz4K"
+                  alt="VORTEXHOST Logo" 
+                  className="w-8 h-8" 
+                />
                 <span className="text-xl font-bold text-white">VORTEXHOST</span>
               </div>
               <p className="text-gray-300">
@@ -333,10 +307,17 @@ const HomePage = () => {
               <ul className="space-y-2 text-gray-300">
                 <li>База знаний</li>
                 <li>Документация</li>
-                <li>Тикеты</li>
                 <li>
                   <button 
-                    onClick={handleAboutClick}
+                    onClick={handleTicketsClick}
+                    className="hover:text-gray-100 transition-colors"
+                  >
+                    Тикеты
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    onClick={handleDiscordClick}
                     className="hover:text-gray-100 transition-colors"
                   >
                     Discord
@@ -345,12 +326,18 @@ const HomePage = () => {
               </ul>
             </div>
             <div>
-              <h4 className="text-white font-semibold mb-4">Контакты</h4>
+              <h4 className="text-white font-semibold mb-4">Соцсети</h4>
               <ul className="space-y-2 text-gray-300">
-                <li>support@vortexhost.pro</li>
-                <li>+7 (999) 123-45-67</li>
                 <li>Telegram</li>
                 <li>VK</li>
+                <li>
+                  <button 
+                    onClick={handleDiscordClick}
+                    className="hover:text-gray-100 transition-colors"
+                  >
+                    Discord
+                  </button>
+                </li>
               </ul>
             </div>
           </div>
