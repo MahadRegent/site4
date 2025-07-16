@@ -145,6 +145,42 @@ frontend:
         agent: "main"
         comment: "Removed entire Emergent badge with link to app.emergent.sh and posthog analytics script"
 
+  - task: "Remove admin panel completely"
+    implemented: true
+    working: true
+    file: "frontend/src/mock.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Removed admin panel mock functions from mock.js file"
+
+  - task: "Block admin and other directories"
+    implemented: true
+    working: true
+    file: "frontend/src/App.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Added catch-all route (*) that redirects to homepage. All undefined routes now redirect to main site."
+
+  - task: "Backend admin path blocking"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Added FastAPI routes to block /admin, /wp-admin, /phpmyadmin and other common admin paths with 301 redirects to homepage"
+
   - task: "Fix Discord link sharing"
     implemented: true
     working: true
