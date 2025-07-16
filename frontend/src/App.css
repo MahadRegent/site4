@@ -1,8 +1,8 @@
-/* Enhanced App styles with smooth transitions */
+/* Enhanced App styles with smooth transitions and advanced animations */
 
 /* Main content fade-in animation */
 .main-content {
-  animation: fadeIn 1s ease-out;
+  animation: fadeIn 0.8s ease-out;
 }
 
 @keyframes fadeIn {
@@ -23,34 +23,73 @@
 
 /* Enhanced transitions for all elements */
 * {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Button hover effects */
+/* Advanced button hover effects */
 button {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.6s ease-in-out;
+}
+
+button:hover::before {
+  left: 100%;
 }
 
 button:hover {
   transform: translateY(-2px);
-  filter: brightness(1.1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
-/* Card hover effects */
+button:active {
+  transform: translateY(-1px);
+}
+
+/* Enhanced card hover effects */
 .card {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent, rgba(147, 197, 253, 0.05), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.card:hover::before {
+  opacity: 1;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
 
-/* Smooth reveal animations */
+/* Advanced reveal animations */
 .reveal-on-scroll {
   opacity: 0;
   transform: translateY(30px);
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .reveal-on-scroll.revealed {
@@ -58,10 +97,30 @@ button:hover {
   transform: translateY(0);
 }
 
-/* Enhanced navigation transitions */
+/* Enhanced navigation with magnetic effect */
 .nav-item {
   position: relative;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.nav-item::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(147, 197, 253, 0.1);
+  border-radius: 50%;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
+.nav-item:hover::before {
+  width: 120%;
+  height: 200%;
 }
 
 .nav-item::after {
@@ -72,14 +131,20 @@ button:hover {
   width: 0;
   height: 2px;
   background: linear-gradient(90deg, #93c5fd, #6366f1);
-  transition: width 0.3s ease-in-out;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-item:hover::after {
   width: 100%;
 }
 
-/* Loading overlay improvements */
+/* Parallax effect for hero section */
+.hero-parallax {
+  transform: translateY(0);
+  transition: transform 0.5s ease-out;
+}
+
+/* Enhanced loading overlay */
 .loading-overlay {
   position: fixed;
   top: 0;
@@ -99,37 +164,289 @@ button:hover {
   visibility: visible;
 }
 
+/* Stagger animation for lists */
+.stagger-item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.stagger-item.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Enhanced text animations */
+.text-glow {
+  text-shadow: 0 0 10px rgba(147, 197, 253, 0.3);
+  transition: text-shadow 0.3s ease-in-out;
+}
+
+.text-glow:hover {
+  text-shadow: 0 0 20px rgba(147, 197, 253, 0.5);
+}
+
+/* Morphing backgrounds */
+.morph-background {
+  position: relative;
+  overflow: hidden;
+}
+
+.morph-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent, rgba(147, 197, 253, 0.1), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease-in-out;
+}
+
+.morph-background:hover::before {
+  transform: translateX(100%);
+}
+
+/* Floating animation */
+@keyframes floating {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.floating {
+  animation: floating 3s ease-in-out infinite;
+}
+
+/* Pulse glow effect */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(147, 197, 253, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(147, 197, 253, 0.5);
+  }
+}
+
+.pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+/* Ripple effect */
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(147, 197, 253, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease-out, height 0.6s ease-out;
+}
+
+.ripple:hover::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* Breathing animation */
+@keyframes breathing {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+.breathing {
+  animation: breathing 4s ease-in-out infinite;
+}
+
+/* Slide in from different directions */
+.slide-in-left {
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slide-in-left.animate {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.slide-in-right {
+  transform: translateX(100%);
+  opacity: 0;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slide-in-right.animate {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Enhanced App logo animation */
 .App-logo {
-    height: 40vmin;
-    pointer-events: none;
+  height: 40vmin;
+  pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
 }
 
 .App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+  background-color: #0f0f10;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
 .App-link {
-    color: #61dafb;
+  color: #61dafb;
 }
 
 @keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Counter animation */
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.counter-animate {
+  animation: countUp 1s ease-out;
+}
+
+/* Enhanced form animations */
+.form-field {
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+
+.form-field:focus-within {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(147, 197, 253, 0.2);
+}
+
+/* Scroll progress indicator */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #93c5fd, #6366f1);
+  transform-origin: 0%;
+  z-index: 100;
+}
+
+/* Enhanced testimonial card animation */
+.testimonial-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.testimonial-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(147, 197, 253, 0.1), rgba(99, 102, 241, 0.05));
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: inherit;
+}
+
+.testimonial-card:hover::before {
+  opacity: 1;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-8px) rotateY(5deg);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Feature icon animation */
+.feature-icon {
+  transition: all 0.3s ease-in-out;
+}
+
+.feature-icon:hover {
+  transform: scale(1.2) rotate(5deg);
+  filter: brightness(1.2);
+}
+
+/* Price tag animation */
+.price-tag {
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+
+.price-tag::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent, rgba(147, 197, 253, 0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.price-tag:hover::before {
+  opacity: 1;
+}
+
+.price-tag:hover {
+  transform: scale(1.05);
+}
+
+/* Enhanced mobile responsive animations */
+@media (max-width: 768px) {
+  .card:hover {
+    transform: translateY(-4px) scale(1.01);
+  }
+  
+  button:hover {
+    transform: translateY(-1px);
+  }
+  
+  .testimonial-card:hover {
+    transform: translateY(-4px);
+  }
 }

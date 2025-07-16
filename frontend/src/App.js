@@ -10,13 +10,13 @@ function App() {
   const [fadeOut, setFadeOut] = useState(false);
 
   useEffect(() => {
-    // Симулируем загрузку приложения
+    // Оптимизированная загрузка приложения - сокращено до 1.5 секунд
     const timer = setTimeout(() => {
       setFadeOut(true); // Начинаем fade-out анимацию
       setTimeout(() => {
         setLoading(false); // Убираем экран загрузки после анимации
-      }, 800); // 800ms для плавного fade-out
-    }, 3000); // 3 секунды анимации загрузки
+      }, 500); // 500ms для быстрого плавного fade-out
+    }, 1500); // 1.5 секунды анимации загрузки
 
     return () => clearTimeout(timer);
   }, []);
